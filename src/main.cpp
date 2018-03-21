@@ -24,8 +24,11 @@ void print(const int node) {
 
 // Test program to determine if each function works as intended.
 int main(int argc, char *argv[]) {
-    GraphAL<int> g(10);
+    cout << "Graph Library Test\nCreating 10-node graph...\n";
 
+    GraphAL<int> g(10);
+    
+    cout << "Adding weighted edges\n";
     g.addEdge(0, 1, 3);
     g.addEdge(0, 2, 7);
     g.addEdge(0, 4, 9);
@@ -40,20 +43,27 @@ int main(int argc, char *argv[]) {
     g.addEdge(7, 8, 2);
     g.addEdge(8, 9, 2);
 
+    cout << "Checking adjaceny of 0 to 1 and 0 to 3 (Should be weight 3, and -1 to indicate no adjacency):\n";
     cout << g.adjacent(0, 1) << endl;
     cout << g.adjacent(0, 3) << endl;
 
+    cout << "Running prims algorithm (Minimum spanning tree weight: 33)\n";
     cout << g.prims(0) << endl;
 
+    cout << "Running dijkstra's algorithm from node 0 to node 9 (Shortest path: 23): \n";
     cout << g.dijkstraShortestPath(0, 9) << endl;
+
+    cout << "Running floyd's algorithm from node 0 to node 5 (Shortest path: 17): \n";
     cout << g.floydsShortestPath(0, 5) << endl;
 
     cout << endl << endl;
 
+    cout << "Running a depth first traversal (0 1 3 5 6 9 7 8 2 4): \n";
     g.depthFirstTraversal(&print);
 
     cout << endl << endl;
 
+    cout << "Running a breadth first traversal (0 1 2 4 3 5 6 7 9 8): \n";
     g.breadthFirstTraversal(&print);
 
     return 0;
